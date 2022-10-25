@@ -12,7 +12,6 @@ let date;
 let target;
 let START_HOUR = 8;
 let times = [0,                                  50,                     95,                  105,           150,                  195,                 205,        250,    300, 305,350];
-//let times = [0,                                  1,                      2,                    3,             4,                    5,                    6,                 7];
 let days = [
     ["","ITALIANO","INFORMATICA","RICREAZIONE","INFORMATICA","ECONOMIA AZIENDALE","RICREAZIONE","DIRITTO","DIRITTO",""],
     ["","ECONOMIA AZIENDALE","ECONOMIA AZIENDALE","RICREAZIONE","ITALIANO","INGLESE","RICREAZIONE","RELIGIONE","MATEMATICA","RICREAZIONE","MATEMATICA",""],
