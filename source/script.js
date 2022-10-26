@@ -11,17 +11,16 @@ let subject;
 let date;
 let target;
 let START_HOUR = 8;
-let times = [0,                                  50,                     95,                  105,           150,                  195,                 205,        250,    300, 305,350];
+let times = [0,                                  50,                     95,                  105,           150,                  195,                 205,        250,    300, 305,350,1440];
 let days = [
-    ["","ITALIANO","INFORMATICA","RICREAZIONE","INFORMATICA","ECONOMIA AZIENDALE","RICREAZIONE","DIRITTO","DIRITTO",""],
-    ["","ECONOMIA AZIENDALE","ECONOMIA AZIENDALE","RICREAZIONE","ITALIANO","INGLESE","RICREAZIONE","RELIGIONE","MATEMATICA","RICREAZIONE","MATEMATICA",""],
-    ["","DIRITTO","ECONOMIA AZIENDALE","RICREAZIONE","ECONOMIA AZIENDALE","MOTORIA","RICREAZIONE","INGLESE","INFORMATICA","RICREAZIONE","INFORMATICA",""],
-    ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA","RICREAZIONE","MATEMATICA","INGLESE",""],
-    ["","DIRITTO","ITALIANO","RICREAZIONE","ITALIANO","ITALIANO","RICREAZIONE","ECONOMIA AZIENDALE","INFORMATICA",""]
+    ["","ITALIANO","INFORMATICA","RICREAZIONE","INFORMATICA","ECONOMIA AZIENDALE","RICREAZIONE","DIRITTO","DIRITTO","USCITA"],
+    ["","ECONOMIA AZIENDALE","ECONOMIA AZIENDALE","RICREAZIONE","ITALIANO","INGLESE","RICREAZIONE","RELIGIONE","MATEMATICA","RICREAZIONE","MATEMATICA","USCITA",],
+    ["","DIRITTO","ECONOMIA AZIENDALE","RICREAZIONE","ECONOMIA AZIENDALE","MOTORIA","RICREAZIONE","INGLESE","INFORMATICA","RICREAZIONE","INFORMATICA","USCITA"],
+    ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA","RICREAZIONE","MATEMATICA","INGLESE","USCITA"],
+    ["","DIRITTO","ITALIANO","RICREAZIONE","ITALIANO","ITALIANO","RICREAZIONE","ECONOMIA AZIENDALE","INFORMATICA","USCITA"]
 ];
 
 function getIndex(raw) {
-  console.log(raw)
     for (var i = 0; i < times.length; i++) {
         if (raw < times[i]) 
         return i-1;
@@ -53,7 +52,12 @@ function getTime() {
     date = date.getTime();
     sub =  Math.max(sub,date) - Math.min(sub,date);
     timer.innerHTML = get(frmt.HOURS, sub) + ":" + get(frmt.MINUTES, sub) + ":" + get(frmt.SECONDS,sub)
-    let day = (new Date().getDay() - 1) % 7; 
+    let day = (new Date().getDay() - 1) % 7;
+    let max = days[day].length - 2;
+    if(i>= max){
+        day++;
+        i = i%(max) -1;
+    }
     subject.innerHTML = "A " + days[day][i+2]
     setTimeout(getTime, 1000);
 }
@@ -67,7 +71,7 @@ function fixed(time) {
 function get(sfrmt, time) {
     switch (sfrmt) {
         case frmt.HOURS:
-            return fixed(time / (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+            return fixed(time % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
         case frmt.MINUTES:
             return fixed(time % (1000 * 60 * 60) / (1000 * 60));
         case frmt.SECONDS:
