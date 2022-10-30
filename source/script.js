@@ -16,7 +16,7 @@ let days = [
     ["","ITALIANO","INFORMATICA","RICREAZIONE","INFORMATICA","ECONOMIA AZIENDALE","RICREAZIONE","DIRITTO","DIRITTO","USCITA"],
     ["","ECONOMIA AZIENDALE","ECONOMIA AZIENDALE","RICREAZIONE","ITALIANO","INGLESE","RICREAZIONE","RELIGIONE","MATEMATICA","RICREAZIONE","MATEMATICA","USCITA",],
     ["","DIRITTO","ECONOMIA AZIENDALE","RICREAZIONE","ECONOMIA AZIENDALE","MOTORIA","RICREAZIONE","INGLESE","INFORMATICA","RICREAZIONE","INFORMATICA","USCITA"],
-    ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA","RICREAZIONE","MATEMATICA","INGLESE","USCITA"],
+    ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA AZIENDALE","RICREAZIONE","MATEMATICA","INGLESE","USCITA"],
     ["","DIRITTO","ITALIANO","RICREAZIONE","ITALIANO","ITALIANO","RICREAZIONE","ECONOMIA AZIENDALE","INFORMATICA","USCITA"]
 ];
 
@@ -36,6 +36,11 @@ window.onload = function() {
     target = target.getTime();
     timer = document.getElementById("timer");
     subject = document.getElementById("subject");
+    let formatted = new Array();
+    days.forEach(day => formatted.push(day.filter( sub => sub!="" && sub!="RICREAZIONE" && sub!="USCITA")));
+    createTable(formatted).onclick = toggleTable;
+    document.getElementById("countdown").onclick = function(){ toggleTable(this) } 
+    
     getTime();
 }
 
@@ -83,4 +88,35 @@ function get(sfrmt, time) {
         default:
             return time;
     }
+}
+
+function createTable(tableData) {
+    var table = document.createElement('table');
+    table.id = "table";
+    table.classLisst.add("fade");
+    table.classList.add("none");
+    var tableBody = document.createElement('tbody');
+  
+    tableData.forEach(function(rowData) {
+      var row = document.createElement('tr');
+  
+      rowData.forEach(function(cellData) {
+        var cell = document.createElement('td');
+        cell.appendChild(document.createTextNode(cellData));
+        row.appendChild(cell);
+      });
+      tableBody.appendChild(row);
+    
+    });
+  
+    table.appendChild(tableBody);
+    document.body.appendChild(table);
+    return table;
+}
+
+function toggleTable(){
+    document.getElementById("countdown").classList.toggle("fade")
+    var calendar = document.getElementById("table");
+    calendar.classList.toggle("fade")
+    setTimeout(200,calendar.classList.toggle("none"))
 }
