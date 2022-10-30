@@ -96,9 +96,8 @@ function get(sfrmt, time) {
 function createTable(tableData) {
     var table = document.createElement('table');
     table.id = "table";
-    tab.classList.add("fade");
-    tab.classList.add("none");
     tab.classList.add("unselectable");
+    tab.classList.add("hide");
     var tableBody = document.createElement('tbody');
   
     tableData.forEach(function(rowData) {
@@ -119,17 +118,7 @@ function createTable(tableData) {
 }
 
 function toggleTable(){
-    countdown.classList.toggle("fade")
-    tab.classList.toggle("fade")
-    setTimeout(200,tab.classList.toggle("none"))
+    tab.classList.add("fade");
+    tab.classList.toggle("hide")
+    countdown.classList.toggle("hide")
 }
-
-//Overriding for testing purposes
-// window.Date = new Proxy(Date, {
-    // construct: function(target, args) {
-        // if (args.length === 0) {
-            // return new target(2022, 30, 10, 9, 0, 0);
-        // }
-        // return new target(...args);
-    // }
-// });

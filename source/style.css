@@ -33,7 +33,6 @@ h1{
     font-size: 1.3vw;
     color: white;
     font-family: Roboto;
-    opacity: 1;
     border-collapse: collapse;
     
     position: absolute;
@@ -47,11 +46,6 @@ h1{
     align-items: center;
     justify-content: center;
     
-    -webkit-transition: all var(--animation-speed) ease-in-out;
-    -moz-transition: all var(--animation-speed) ease-in-out;
-    -ms-transition: all var(--animation-speed) ease-in-out;
-    -o-transition: all var(--animation-speed) ease-in-out;
-    transition: all var(--animation-speed) ease-in-out;
 }
 
 tbody{
@@ -72,30 +66,20 @@ th, td { display: block; }
     vertical-align: middle;
 }
 
-#countdown{
-    opacity: 1;
+tr.highlight{
+    color: red;
+}
 
+.hide{
+    opacity: 0;
+}
+
+.fade {
     -webkit-transition: all var(--animation-speed) ease-in-out;
     -moz-transition: all var(--animation-speed) ease-in-out;
     -ms-transition: all var(--animation-speed) ease-in-out;
     -o-transition: all var(--animation-speed) ease-in-out;
     transition: all var(--animation-speed) ease-in-out;
-
-}
-
-#countdown.fade{
-    opacity: 0;
-}
-#tab.fade{
-    opacity: 0;
-}
-
-tr.highlight{
-    color: red;
-}
-
-.none{
-    display: none;
 }
 
 .unselectable {
