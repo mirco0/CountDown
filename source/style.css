@@ -29,14 +29,13 @@ h1{
     font-size: 10vh;
 }
 
-table {
+#tab {
     font-size: 1.3vw;
     color: white;
     font-family: Roboto;
     opacity: 1;
     border-collapse: collapse;
     
-
     position: absolute;
     left: 0;
     right: 0;
@@ -44,12 +43,15 @@ table {
     bottom: 0;
     margin: auto;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     -webkit-transition: all var(--animation-speed) ease-in-out;
     -moz-transition: all var(--animation-speed) ease-in-out;
     -ms-transition: all var(--animation-speed) ease-in-out;
     -o-transition: all var(--animation-speed) ease-in-out;
     transition: all var(--animation-speed) ease-in-out;
-
 }
 
 tbody{
@@ -61,11 +63,8 @@ td, th {
     padding: 8px;
 } 
 
-
 tr { display: block; float: left; } 
 th, td { display: block; }
-
-
 
 #container{
     display: inline-block;
@@ -75,21 +74,35 @@ th, td { display: block; }
 
 #countdown{
     opacity: 1;
+
     -webkit-transition: all var(--animation-speed) ease-in-out;
     -moz-transition: all var(--animation-speed) ease-in-out;
     -ms-transition: all var(--animation-speed) ease-in-out;
     -o-transition: all var(--animation-speed) ease-in-out;
     transition: all var(--animation-speed) ease-in-out;
+
 }
 
 #countdown.fade{
     opacity: 0;
 }
-table.fade{
-    width: 0;
-    height: 0;
+#tab.fade{
     opacity: 0;
 }
+
+tr.highlight{
+    color: red;
+}
+
 .none{
     display: none;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

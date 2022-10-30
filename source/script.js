@@ -19,6 +19,7 @@ let days = [
     ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA AZIENDALE","RICREAZIONE","MATEMATICA","INGLESE","USCITA"],
     ["","DIRITTO","ITALIANO","RICREAZIONE","ITALIANO","ITALIANO","RICREAZIONE","ECONOMIA AZIENDALE","INFORMATICA","USCITA"]
 ];
+var tab,countdown;
 
 function getIndex(raw) {
     for (var i = 0; i < times.length; i++) {
@@ -29,6 +30,8 @@ function getIndex(raw) {
 }
 
 window.onload = function() {
+    countdown = document.getElementById("countdown");
+    tab = document.getElementById("tab");
     target = new Date();
     target.setHours(START_HOUR);
     target.setMinutes(0);
@@ -39,7 +42,7 @@ window.onload = function() {
     let formatted = new Array();
     days.forEach(day => formatted.push(day.filter( sub => sub!="" && sub!="RICREAZIONE" && sub!="USCITA")));
     createTable(formatted).onclick = toggleTable;
-    document.getElementById("countdown").onclick = function(){ toggleTable(this) } 
+    countdown.onclick = toggleTable() 
     
     getTime();
 }
@@ -93,8 +96,9 @@ function get(sfrmt, time) {
 function createTable(tableData) {
     var table = document.createElement('table');
     table.id = "table";
-    table.classLisst.add("fade");
-    table.classList.add("none");
+    tab.classList.add("fade");
+    tab.classList.add("none");
+    tab.classList.add("unselectable");
     var tableBody = document.createElement('tbody');
   
     tableData.forEach(function(rowData) {
@@ -110,13 +114,22 @@ function createTable(tableData) {
     });
   
     table.appendChild(tableBody);
-    document.body.appendChild(table);
+    tab.appendChild(table);
     return table;
 }
 
 function toggleTable(){
-    document.getElementById("countdown").classList.toggle("fade")
-    var calendar = document.getElementById("table");
-    calendar.classList.toggle("fade")
-    setTimeout(200,calendar.classList.toggle("none"))
+    countdown.classList.toggle("fade")
+    tab.classList.toggle("fade")
+    setTimeout(200,tab.classList.toggle("none"))
 }
+
+//Overriding for testing purposes
+// window.Date = new Proxy(Date, {
+    // construct: function(target, args) {
+        // if (args.length === 0) {
+            // return new target(2022, 30, 10, 9, 0, 0);
+        // }
+        // return new target(...args);
+    // }
+// });
