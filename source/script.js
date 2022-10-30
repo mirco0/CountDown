@@ -42,7 +42,7 @@ window.onload = function() {
     let formatted = new Array();
     days.forEach(day => formatted.push(day.filter( sub => sub!="" && sub!="RICREAZIONE" && sub!="USCITA")));
     createTable(formatted).onclick = toggleTable;
-    countdown.onclick = toggleTable() 
+    countdown.onclick = toggleTable;
     
     getTime();
 }
