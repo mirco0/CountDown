@@ -1,4 +1,4 @@
-# Simple website to get the missing time until the next hour
+# Simple website to get the missing time until the next class
 
 ![Main](https://user-images.githubusercontent.com/60142614/198900049-d9d4b863-b021-4ea5-aa2d-e938abe0f14c.png)
 
