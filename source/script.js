@@ -53,7 +53,6 @@ function getTime() {
     //get time since beginning 08:00
     let time = date.getTime() - target;
     var i = getIndex(get(frmt.RAW_MINUTES, time));
-    
     // get subtime since the hour
     let diff = times[i+1];
     let sub =  new Date(target + diff*60000).getTime() 
@@ -67,6 +66,7 @@ function getTime() {
         i = i%(max) -1;
     }
     subject.innerHTML = "A " + days[day][i+2]
+    if(Math.floor(sub/1000) === 0) showConfetti();
     setTimeout(getTime, 1000);
 }
 
@@ -121,4 +121,9 @@ function toggleTable(){
     tab.classList.add("fade");
     tab.classList.toggle("hide")
     countdown.classList.toggle("hide")
+}
+
+function showConfetti(){
+    startConfetti();
+    setTimeout(stopConfetti,5000);
 }
