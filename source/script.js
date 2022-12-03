@@ -35,7 +35,7 @@ window.onload = function() {
     target = new Date();
     target.setHours(START_HOUR);
     target.setMinutes(0);
-    target.setSeconds(-9);
+    target.setSeconds(-11);
     target = target.getTime();
     timer = document.getElementById("timer");
     subject = document.getElementById("subject");
