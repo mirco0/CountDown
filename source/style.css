@@ -82,6 +82,48 @@ tr.highlight{
     transition: all var(--animation-speed) ease-in-out;
 }
 
+.control-button{
+    position: absolute;
+    aspect-ratio : 1 / 1;
+    width: 3vh;
+    border: solid white;
+    border-width: 0 1.5vh 1.5vh 0;
+    bottom: 0;
+    top: 0;
+    margin: auto 2vh auto 2vh ;
+}
+
+#back-button{
+    left: 2vh;
+    rotate: 135deg;
+}
+
+#next-button{
+    right: 2vh;
+    rotate: -45deg;
+}
+
+.mobile-element {
+    display:none;
+}
+
+@media only screen and (max-width:600px) {
+    .mobile-element {
+        display:block;
+    }
+
+    tr{
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 60vw;
+        height: fit-content;
+        font-size: 2vh;
+    }
+
+}
+
+
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;

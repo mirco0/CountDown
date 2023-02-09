@@ -19,7 +19,7 @@ let days = [
     ["","ITALIANO","DIRITTO","RICREAZIONE","MOTORIA","ECONOMIA AZIENDALE","RICREAZIONE","MATEMATICA","INGLESE","USCITA"],
     ["","DIRITTO","ITALIANO","RICREAZIONE","ITALIANO","ITALIANO","RICREAZIONE","ECONOMIA AZIENDALE","INFORMATICA","USCITA"]
 ];
-var tab,countdown;
+var tab,countdown,tableBody,viewing;
 
 function getIndex(raw) {
     for (var i = 0; i < times.length; i++) {
@@ -41,6 +41,8 @@ window.onload = function() {
     subject = document.getElementById("subject");
     let formatted = new Array();
     days.forEach(day => formatted.push(day.filter( sub => sub!="" && sub!="RICREAZIONE" && sub!="USCITA")));
+    viewing = (new Date().getDay() - 1) % 7;
+    if(viewing > days.length-1) viewing = 0;
     createTable(formatted).onclick = toggleTable;
     countdown.onclick = toggleTable;
     
@@ -98,18 +100,19 @@ function createTable(tableData) {
     table.id = "table";
     tab.classList.add("unselectable");
     tab.classList.add("hide");
-    var tableBody = document.createElement('tbody');
+    tableBody = document.createElement('tbody');
   
-    tableData.forEach(function(rowData) {
-      var row = document.createElement('tr');
-  
-      rowData.forEach(function(cellData) {
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(cellData));
-        row.appendChild(cell);
-      });
-      tableBody.appendChild(row);
-    
+    tableData.forEach(function(rowData,i) {
+        var row = document.createElement('tr');
+        if(i != viewing && isMobile())
+            row.className = "hide";
+        rowData.forEach(function(cellData) {
+            var cell = document.createElement('td');
+            cell.appendChild(document.createTextNode(cellData));
+            row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
     });
   
     table.appendChild(tableBody);
@@ -123,7 +126,26 @@ function toggleTable(){
     countdown.classList.toggle("hide")
 }
 
+function back(){
+    tableBody.children[viewing].classList.add('hide');
+    if(viewing > 0) 
+        viewing--;
+    tableBody.children[viewing].classList.remove('hide');
+}
+
+function next(){
+    tableBody.children[viewing].classList.add('hide');
+    if(viewing+1 < tableBody.children.length)
+        viewing++;
+    tableBody.children[viewing].classList.remove('hide');
+}
+
 function showConfetti(){
     startConfetti();
     setTimeout(stopConfetti,5000);
+}
+
+function isMobile(){
+    //use the same code used in css for consistency
+    return window.matchMedia("only screen and (max-width:600px)").matches;
 }
