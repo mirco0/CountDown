@@ -36,15 +36,6 @@ window.onload = function() {
 function formatDays(){
     days.forEach(day => formattedDays.push(day.filter( sub => sub!="" && sub!="RICREAZIONE" && sub!="USCITA")));
 }
-//TODO: SPLIT FILE ON MULTIPLE FILES WITH OWN SCOPE
-/*
-    - clock.js 
-        Handle time
-    - script.js 
-        Handle DOM and table
-    - something.js
-        Handle days
-*/
 
 function createTable(tableData) {
     var table = document.createElement('table');
@@ -82,14 +73,14 @@ export function showConfetti(){
     setTimeout(stopConfetti,5000);
 }
 
-function back(){
+window.back = function back(){
     tableBody.children[viewing].classList.add('hide');
     if(viewing > 0) 
         viewing--;
     tableBody.children[viewing].classList.remove('hide');
 }
 
-function next(){
+window.next = function next(){
     tableBody.children[viewing].classList.add('hide');
     if(viewing+1 < tableBody.children.length)
         viewing++;
